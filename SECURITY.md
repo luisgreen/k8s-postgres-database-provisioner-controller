@@ -1,0 +1,1 @@
+We acknowledge that every line of code that we write may potentially contain security issues. We are trying to deal with it responsibly and provide patches as quickly as possible. In case you detect any security issues, please open an issue here https://github.com/luisgreen/k8s-postgres-database-provisioner-controller/issues

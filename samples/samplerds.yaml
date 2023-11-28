@@ -1,0 +1,9 @@
+apiVersion: k8spgdpc.io/v1
+kind: dpcdatabase
+metadata:
+  name: controller-test
+  namespace: database-provisioner-controller
+spec:
+  schema_name: controller_test_c
+  create_ssm: true
+  drop_on_delete: true

@@ -1,0 +1,38 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "k8s-postgres-database-provisioner-controller.serviceAccountName" . }}
+rules:
+  - verbs:
+      - delete
+      - get
+      - patch
+      - watch
+    apiGroups:
+      - "*"
+    resources:
+      - "*"
+  - verbs:
+      - list
+      - create
+    apiGroups:
+      - ""
+    resources:
+      - events
+  - verbs:
+      - get
+    apiGroups:
+      - ""
+    resources:
+      - pods
+      - pods/log
+  - verbs:
+      - get
+      - list
+      - update
+      - patch
+      - watch
+    apiGroups:
+      - {{ .Values.controller.domain | required "controller.domain"}}
+    resources:
+      - dpcdatabases

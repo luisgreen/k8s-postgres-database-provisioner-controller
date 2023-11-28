@@ -1,0 +1,24 @@
+name: pr-title
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+
+jobs:
+  prTitle:
+    name: PR title contains Jira ticket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check PR Title
+        uses: clowdhaus/actions/pr-title@v0.1.0
+        with:
+          title-regex: '\w+-\d+$'
+          github-token: ${{ secrets.GITHUB_TOKEN }}

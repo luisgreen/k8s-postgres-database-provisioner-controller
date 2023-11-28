@@ -1,0 +1,25 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    env:
+      DOCKERHUB_PAT: ${{ secrets.DOCKERHUB_PAT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: build
+        run: docker build -f ./controller/Dockerfile -t luisgreen/k8s-postgres-database-provisioner-controller:${GITHUB_SHA} ./controller
+      - name: tag latest
+        run: docker tag luisgreen/k8s-postgres-database-provisioner-controller:${GITHUB_SHA} luisgreen/k8s-postgres-database-provisioner-controller:latest
+      - name: DockerHub Login
+        run: echo ${DOCKERHUB_PAT} | docker login -u luisgreen --password-stdin
+      - name: push
+        run: docker push luisgreen/k8s-postgres-database-provisioner-controller --all-tags
+        

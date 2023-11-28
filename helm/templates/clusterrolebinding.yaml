@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "k8s-postgres-database-provisioner-controller.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "k8s-postgres-database-provisioner-controller.serviceAccountName" . }}
+    namespace: {{ .Values.global.namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "k8s-postgres-database-provisioner-controller.serviceAccountName" . }}
