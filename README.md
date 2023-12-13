@@ -1,5 +1,5 @@
 # k8s-postgres-database-provisioner-controller
-This is a simple controller for dinamically provisioning a database in a postgres instance. Is my first contribution to the communtity so please bear with me 😊.
+This is a simple controller for dinamically provisioning a database in a postgres instance. Is my first contribution to the communtity so please be patient with me 😊.
 
 ## Documentation
 
